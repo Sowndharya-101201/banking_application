@@ -1,0 +1,20 @@
+package applications;
+
+public class customer {
+		String Name;
+		int acc_no;
+		String email;
+		String phno;
+		double balance;
+		customer(String n,int a,String e,String p,double amount){
+			Name=n;
+			acc_no=a;
+			email=e;
+			phno=p;
+			balance=amount;
+		}
+		public String toString() {
+			return ("Customer name: "+Name+'\n'+"Account Number: "+acc_no+'\n'+"Customer Email-id: "+email+'\n'+"Customer Phone Number: "+phno+'\n'+"Balance Amount: "+balance);
+		}
+		
+}
