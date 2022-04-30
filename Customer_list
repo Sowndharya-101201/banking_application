@@ -1,0 +1,140 @@
+package applications;
+import java.util.*;
+public class CustomerList {
+	 static List<customer> l=new ArrayList<>();
+	 static int acc_no=999;
+     public static void main(String[] args) {
+    	 Scanner sc=new Scanner(System.in);
+    	 boolean loop=true;
+    	 while(loop) {
+    		 System.out.println("Enter your requirement:");
+    		 System.out.println("1-->Open an account;"+"2-->Balance check;"+"3-->Money transfer;"+"4-->Deposit amount;"+"5-->Withdraw amount;"+"6-->Exit");
+    		 int choice=sc.nextInt();
+    		 switch(choice) {
+    		 	case 1: System.out.println("Enter your Name: ");
+    		 	sc.nextLine();
+    		 			String name=sc.nextLine();
+    		 			
+    		 			System.out.println("Enter your Email id: ");
+    		 			String email=sc.nextLine();
+    		 			System.out.println("Enter your Mobile number: ");
+    		 			String phno=sc.nextLine();
+    		 			System.out.println("Enter the amount: ");
+    		 			double bal=sc.nextDouble();
+    		 			customer c=new customer(name,++acc_no,email,phno,bal);
+    		 			l.add(c);
+    		 			System.out.println("*----------------------------------------*");
+    		 			
+    		 			System.out.println(c.toString());
+    		 			System.out.println("*----------------------------------------*");
+    		 			break;
+    		 	case 2: System.out.println("Enter your Account Number:");
+    		 			int acc=sc.nextInt();
+    		 			int flag=0;
+    		 			for(customer i: l) {
+    		 				if(acc==i.acc_no) {
+    		 					flag=1;
+    		 					System.out.println(i.balance);
+    		 				}
+    		 			}
+    		 			if(flag==0) {
+    		 				System.out.println("Please enter the valid account number");
+    		 			}
+    		 			break;
+    		 	case 3: System.out.println("Enter your account number");
+    		 			int source=sc.nextInt();
+    		 			System.out.println("Enter the amount ");
+    		 			double amount=sc.nextInt();
+    		 			System.out.println("Enter the account number which you want to transfer money");
+    		 			int target=sc.nextInt();
+    		 			int f1=0,f2=0;
+    		 			for(customer i:l) {
+    		 				if(source==i.acc_no) {
+    		 					f1=1;
+    		 					if(i.balance>=amount) {
+   		 			    		 i.balance-=amount;
+   		 			    	 }
+   		 			    	 else {
+   		 			    		 System.out.println("Withdrawal unsuccessfull");
+   		 			    	 }
+    		 				}
+    		 			}
+    		 			for(customer i:l) {
+    		 				if(target==i.acc_no) {
+    		 					f2=1;
+    		 					i.balance+=amount;
+    		 				}
+    		 			}
+    		 			if(f1==0 || f2==0) {
+    		 				System.out.println("Please enter the correct account number...There is a mismatch! Kindly check it");
+    		 				
+    		 			}
+    		 			else {
+    		 				System.out.print("Money is successfully tranfered");
+    		 				
+    		 			}
+    		 			break;
+    		 	case 4:
+    		 		System.out.println("Enter your account number");
+		 			int source1=sc.nextInt();
+		 			System.out.println("Enter the amount ");
+		 			double amount1=sc.nextInt();
+		 			int f=0;
+		 			double d1=0;
+		 			for(customer i:l) {
+		 				if(source1==i.acc_no) {
+		 					f=1;
+		 					i.balance+=amount1;
+		 					d1=i.balance;
+		 				}
+		 			}	
+		 			if(f==0 ) {
+		 				System.out.println("Please enter the correct account number...There is a mismatch! Kindly check it");
+		 				
+		 			}
+		 			else {
+			 			
+		 				System.out.println("Your current balance is "+d1);
+		 			}
+		 			break;
+    		 	case 5:
+    		 		System.out.println("Enter your account number");
+		 			int source2=sc.nextInt();
+		 			System.out.println("Enter the amount ");
+		 			double amount2=sc.nextInt();
+		 			int flag1=0;
+		 			double d=0;
+		 			for(customer i:l) {
+		 				if(source2==i.acc_no) {
+		 					flag1=1;
+		 					if(i.balance>=amount2) {
+		 						
+		 			    		 i.balance-=amount2;
+		 			    		d=i.balance;
+		 			    	 }
+		 			    	 else {
+		 			    		 System.out.println("Withdrawal unsuccessfull");
+		 			    	 }
+		 					
+		 				}
+		 			}	
+		 			if(flag1==0 ) {
+		 				System.out.println("Please enter the correct account number...There is a mismatch! Kindly check it");
+		 				
+		 			}
+		 			else {
+		 			
+		 				System.out.println("Your current balance is "+d);
+		 			}
+		 			break;
+    		 	case 6: 
+    		 		System.out.println("Thank you!");
+    		 		loop=false;
+    		 
+    		 }
+    	 }
+    	 sc.close();
+     }
+
+    
+}
